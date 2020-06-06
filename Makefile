@@ -61,7 +61,7 @@ compose-config:
 	@bin/compose-build-specific --buildconf $(buildconf) config
 
 compose-build:
-	@bin/compose-build-specific --buildconf $(buildconf) build
+	@bin/compose-build-specific --buildconf $(buildconf) build --parallel
 
 compose-up:
 	@bin/compose-build-specific --buildconf $(buildconf) up
