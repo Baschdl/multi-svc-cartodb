@@ -1,10 +1,10 @@
 {
     "carto_env": "development",
 
-    "stack_scheme": "https",
+    "stack_scheme": "http",
     "stack_fqdn": "osscarto-multi.localhost",
     "stack_domain": "localhost",
-    "stack_listen_port": "443",
+    "stack_listen_port": "80",
 
     "user_db_basename": "cartodb_dev_user",
     "db_user_basename": "development_cartodb_user",

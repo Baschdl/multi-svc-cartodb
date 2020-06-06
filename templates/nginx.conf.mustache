@@ -25,21 +25,8 @@ http {
     gzip on;
 
     server {
-        listen 80;
-        server_name {{{stack_fqdn}}};
-
-        return 301 https://{{{stack_fqdn}}}$request_uri;
-    }
-
-    server {
-      listen {{{stack_listen_port}}} ssl http2;
+      listen 80;
       server_name   {{{stack_fqdn}}};       # MUSTACHE
-
-      ssl_certificate       /etc/ssl/osscarto-multi.localhost.crt;
-      ssl_certificate_key   /etc/ssl/osscarto-multi.localhost.key;
-      ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
-      ssl_prefer_server_ciphers   on;
-      ssl_ciphers           ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
 
       client_max_body_size  0;
       client_header_buffer_size 32k;

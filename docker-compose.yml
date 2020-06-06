@@ -10,8 +10,9 @@ services:
         container_name: nginx
         build:
             context: docker/nginx
+            dockerfile: Dockerfile-without_ssl
         ports:
-            - "443:443"
+            - "80:80"
         depends_on:
             - cartodb
             - windshaft
