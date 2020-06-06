@@ -11,7 +11,7 @@ output_message "Script starting"
 
 export DEBIAN_FRONTEND="noninteractive"
 export PG_MAJOR="10"
-export PG_VERSION="10.10-1.pgdg90+1"
+#export PG_VERSION="10.10-1.pgdg90+1"
 export PYTHONDONTWRITEBYTECODE=1
 
 DPKG_ARCH="$(dpkg --print-architecture)"
@@ -118,7 +118,7 @@ apt-get update
 apt-get install -y --allow-unauthenticated postgresql-common
 PG_CREATE_CLUSTER_FILE="/etc/postgresql-common/createcluster.conf"
 sed -ri 's/#(create_main_cluster) .*$/\1 = false/' $PG_CREATE_CLUSTER_FILE
-apt-get install -y --allow-unauthenticated "postgresql-$PG_MAJOR=$PG_VERSION"
+apt-get install -y --allow-unauthenticated "postgresql-$PG_MAJOR"
 
 output_message "Configuring installed PostgreSQL packages"
 
