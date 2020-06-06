@@ -55,7 +55,7 @@
     "pgext_version": "0.28.1",
     "crankshaft_version": "0.8.2",                                              
     "sqlapi_version": "3.0.0",                                                  
-    "windshaft_version": "7.1.0",                                               
+    "windshaft_version": "8.1.1",                                               
     "cartodb_version": "v4.29.0",                                               
     "dataservices_version": "0.0.2",                                            
     "dataservices_api_server_version": "0.35.1-server",                         
