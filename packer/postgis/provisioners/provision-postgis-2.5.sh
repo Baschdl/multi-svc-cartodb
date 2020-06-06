@@ -17,14 +17,14 @@ export PG_VERSION="${PG_VERSION:-10.10-1.pgdg90+1}"
 export PYTHONDONTWRITEBYTECODE=1
 
 export POSTGIS_MAJOR="2.5"
-export POSTGIS_VERSION="2.5.2+dfsg-1~exp1.pgdg90+1"
+#export POSTGIS_VERSION="2.5.2+dfsg-1~exp1.pgdg90+1"
 
 output_message "Installing PostGIS packages"
 apt-get -qq update
 apt-get install -y --allow-unauthenticated --no-install-recommends \
-    postgis=$POSTGIS_VERSION \
-    postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR=$POSTGIS_VERSION \
-    postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR-scripts=$POSTGIS_VERSION \
+    postgis \
+    postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR \
+    postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR-scripts \
     postgresql-server-dev-$PG_MAJOR
 
 output_message "Installing plpython and plproxy PG extensions"
