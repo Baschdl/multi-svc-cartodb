@@ -19,6 +19,7 @@ services:
             - varnish
             - redis
             - postgis
+        restart: always
 
     cartodb:
         container_name: cartodb
@@ -48,6 +49,7 @@ services:
             - windshaft
         environment:
             - CARTO_ENV=${CARTO_ENV}
+        restart: always
 
     sqlapi:
         container_name: sqlapi
@@ -60,6 +62,7 @@ services:
             - postgis
         environment:
             - CARTO_ENV=${CARTO_ENV}
+        restart: always
 
     windshaft:
         container_name: windshaft
@@ -73,6 +76,7 @@ services:
             - sqlapi
         environment:
             - CARTO_ENV=${CARTO_ENV}
+        restart: always
 
     varnish:
         container_name: varnish
@@ -83,6 +87,7 @@ services:
         depends_on:
             - sqlapi
             - windshaft
+        restart: always
 
     redis:
         container_name: redis
@@ -90,6 +95,7 @@ services:
             context: docker/redis
         volumes:
             - osscarto-multi-redis-data:/data
+        restart: always
 
     postgis:
         container_name: postgis
@@ -99,3 +105,4 @@ services:
             - osscarto-multi-postgis-extensions:/usr/share/postgresql
         ports:
             - "5432:5432"
+        restart: always
