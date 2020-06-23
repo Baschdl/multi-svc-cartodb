@@ -3,6 +3,9 @@
 #### SETTINGS FROM ENVIRONMENT ###############################################
 
 VARNISH_HTTP_PORT=${VARNISH_HTTP_PORT}
+VARNISH_STORAGE_METHOD=${VARNISH_STORAGE_METHOD:-malloc}
+VARNISH_STORAGE_SIZE=${VARNISH_STORAGE_SIZE:-512m}
+VARNISH_TTL=${VARNISH_TTL:-120}
 
 REQUIRED_ENV_VARS=(VARNISH_HTTP_PORT)
 
@@ -23,6 +26,7 @@ fi
 echo "Starting varnishd (foregrounded) as container entrypoint."
 /opt/varnish/sbin/varnishd -F \
     -a :${VARNISH_HTTP_PORT} \
-    -s malloc,256m \
+    -s ${VARNISH_STORAGE_METHOD},${VARNISH_STORAGE_SIZE} \
     -f /etc/varnish.vcl \
-    -p http_req_hdr_len=32768
+    -p http_req_hdr_len=32768 \
+    -t ${VARNISH_TTL} \
