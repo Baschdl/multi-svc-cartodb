@@ -88,6 +88,9 @@ services:
             context: docker/varnish
         environment:
             - VARNISH_HTTP_PORT=${VARNISH_HTTP_PORT}
+            - VARNISH_STORAGE_METHOD=${VARNISH_STORAGE_METHOD}
+            - VARNISH_STORAGE_SIZE=${VARNISH_STORAGE_SIZE}
+            - VARNISH_TTL=${VARNISH_TTL}
         depends_on:
             - sqlapi
             - windshaft
