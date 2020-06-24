@@ -53,10 +53,10 @@ var config = {
         host: '{{{redis_host}}}',           // MUSTACHE. Was '127.0.0.1'
         port: '{{{redis_listen_port}}}',    // MUSTACHE. Was 6379
 
-        max: 50,
+        max: 2000,
         returnToHead: true,
-        idleTimeoutMillis: 1,
-        reapIntervalMillis: 1,
+        idleTimeoutMillis: 60000,
+        reapIntervalMillis: 10000,
         slowQueries: { log: true, elapsedThreshold: 200 },
         slowPool: { log: true, elapsedThreshold: 25 },
         emitter: { statusInterval: 5000 },
@@ -81,12 +81,12 @@ var config = {
     base_url_templated: '(?:/api/v1/map/named|/user/:user/api/v1/map/named|/tiles/template)',
     base_url_detached: '(?:/api/v1/map|/user/:user/api/v1/map|/tiles/layergroup)',
 
-    maxConnections:128,
-    maxUserTemplates:1024,
+    maxConnections: 5000,
+    maxUserTemplates: 1024,
     mapConfigTTL: 7200,
     socket_timeout: 600000,
     enable_cors: true,
-    cache_enabled: false,
+    cache_enabled: true,
     log_format: ':req[X-Real-IP] :method :req[Host]:url :status :response-time ms -> :res[Content-Type] (:res[X-Tiler-Profiler])',
     log_filename: 'logs/windshaft.log',
     postgres_auth_pass: '<%= user_password %>',
@@ -101,15 +101,16 @@ var config = {
     },
 
     renderer: {
-        cache_ttl: 60000,
+        cache_ttl: 600000,
         statsInterval: 5000,
         mapnik: {
-            poolSize: 8,
+            poolSize: 8000,
+	    poolMaxWaitingClients: 8000,
             useCartocssWorkers: false,
             metatile: 2,
             metatileCache: { ttl: 0, deleteOnHit: false },
             formatMetatile: { png: 2, 'grid.json': 1 },
-            bufferSize: 64,
+            bufferSize: 256,
             snapToGrid: false,
             clipByBox2d: false,
             limits: { render: 0, cacheOnTimeout: true },
@@ -120,7 +121,7 @@ var config = {
             }
         },
         http: {
-            timeout: 2000,
+            timeout: 200000,
             proxy: undefined,
             whitelist: [ '.*' ],
             fallbackImage: {
@@ -129,7 +130,7 @@ var config = {
             }
         },
         torque: {
-            dbPoolParams: { size: 16, idleTimeout: 3000, reapInterval: 1000 }
+            dbPoolParams: { size: 1024, idleTimeout: 6000, reapInterval: 1000 }
         }
     },
 
