@@ -18,7 +18,7 @@ defaults: &defaults
   http_port:
   https_port:
   secret_token:       '{{{cartodb_secret_token}}}' # MUSTACHE
-  account_host:       '{{{stack_fqdn}}}:{{{cartodb_listen_port}}}'  # MUSTACHE. Was: 'cartodb.localhost:3000'
+  account_host:       '{{{stack_fqdn}}}'  # MUSTACHE. Was: 'cartodb.localhost:3000'
   # Here you can define other hosts different to account_host that also will be CORS enabled
   # cors_enabled_hosts:
   #   - example.com

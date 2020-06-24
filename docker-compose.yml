@@ -4,6 +4,7 @@ volumes:
     osscarto-multi-redis-data:
     osscarto-multi-postgis-data:
     osscarto-multi-postgis-extensions:
+    osscarto-multi-cartodb-public:
 
 services:
     nginx:
@@ -21,6 +22,8 @@ services:
             - redis
             - postgis
         restart: always
+        volumes:
+	    - osscarto-multi-cartodb-public:/public
 
     cartodb:
         container_name: cartodb
@@ -51,7 +54,8 @@ services:
         environment:
             - CARTO_ENV=${CARTO_ENV}
         restart: always
-
+	    volumes:
+	        - osscarto-multi-cartodb-public:/carto/cartodb/public
     sqlapi:
         container_name: sqlapi
         build:
@@ -85,6 +89,9 @@ services:
             context: docker/varnish
         environment:
             - VARNISH_HTTP_PORT=${VARNISH_HTTP_PORT}
+            - VARNISH_STORAGE_METHOD=${VARNISH_STORAGE_METHOD}
+            - VARNISH_STORAGE_SIZE=${VARNISH_STORAGE_SIZE}
+            - VARNISH_TTL=${VARNISH_TTL}
         depends_on:
             - sqlapi
             - windshaft
