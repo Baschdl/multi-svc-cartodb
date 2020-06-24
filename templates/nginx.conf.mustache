@@ -38,7 +38,7 @@ http {
         proxy_set_header        Host $host;
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header        X-Forwarded-Proto $scheme;
+        #proxy_set_header        X-Forwarded-Proto $scheme;
         proxy_pass              {{{cartodb_scheme}}}://{{{cartodb_host}}}:{{{cartodb_listen_port}}};   # MUSTACHE
       }
 
@@ -46,7 +46,7 @@ http {
         proxy_set_header        Host $host;
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header        X-Forwarded-Proto $scheme;
+        #proxy_set_header        X-Forwarded-Proto $scheme;
         proxy_set_header        X-Carto-Service windshaft; # tell varnish what backend
         proxy_no_cache          true;           # Make sure nginx doesn't cache
         proxy_cache_bypass      true;           # Make sure nginx doesn't cache
@@ -59,7 +59,7 @@ http {
         proxy_set_header        Host $host;
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header        X-Forwarded-Proto $scheme;
+        #proxy_set_header        X-Forwarded-Proto $scheme;
         proxy_set_header        X-Carto-Service sqlapi; # tell varnish what backend
         proxy_no_cache          true;           # make sure nginx doesn't cache
         proxy_cache_bypass      true;           # make sure nginx doesn't cache
@@ -70,7 +70,7 @@ http {
         proxy_set_header        Host $host;
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header        X-Forwarded-Proto $scheme;
+        #proxy_set_header        X-Forwarded-Proto $scheme;
         proxy_pass {{{cartodb_scheme}}}://{{{cartodb_host}}}:{{{cartodb_listen_port}}}; # MUSTACHE
       }
 
@@ -84,7 +84,7 @@ http {
         proxy_set_header        Host $host;
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header        X-Forwarded-Proto $scheme;
+        #proxy_set_header        X-Forwarded-Proto $scheme;
         proxy_pass {{{cartodb_scheme}}}://{{{cartodb_host}}}:{{{cartodb_listen_port}}}; # MUSTACHE
       }
 
